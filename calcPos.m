@@ -9,5 +9,13 @@ function [ pos ] = calcPos( r1, r2 )
     y = sqrt(r2^2 - (x-d)^2);
 
     pos = [x y];
+    
+    
+    clf
+    hold on
+    axis equal
+    xlim([-1 1])
+    plot(r1*sin(linspace(0,2*pi))-d, r1*cos(linspace(0,2*pi)))
+    plot(r2*sin(linspace(0,2*pi))+d, r2*cos(linspace(0,2*pi)))
 end
 

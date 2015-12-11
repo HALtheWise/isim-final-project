@@ -12,7 +12,7 @@ ch2 = addAnalogInputChannel(s,'AD1', 2, 'Voltage')
 
 packetLength = .2; %seconds of measurement
 
-rate = 300e3;
+rate = 500e3;
 
 while 1
     %pause
@@ -47,23 +47,21 @@ while 1
     
 
     mach1 = 340.29; %m/s
-    timeOffset = 2.5e-4;
+    timeOffset = 0;
     pos = calcPos((echoTime1-timeOffset)*mach1, (echoTime2-timeOffset)*mach1)
     
-    clf
-    hold on
-    plot(timestamps, data);
-    plot(timestamps, TransmitTimes);
-    
-    if not(isempty(tTime))
-        plot((timestamps(tID))*[1 1], [-3 3], 'k');
-        plot((timestamps(tID+mSig))*[1 1], [-3 3], 'k');
-    end
-    
-    xlabel('Time (seconds)')
-    ylabel('Voltage (Volts)')
-    title(['Clocked Data Triggered on: ' datestr(triggerTime)])
-    legend('1', '2', 'transmitTimes')
+%     plot(timestamps, data);
+%     plot(timestamps, TransmitTimes);
+%     
+%     if not(isempty(tTime))
+%         plot((timestamps(tID))*[1 1], [-3 3], 'k');
+%         plot((timestamps(tID+mSig))*[1 1], [-3 3], 'k');
+%     end
+%     
+%     xlabel('Time (seconds)')
+%     ylabel('Voltage (Volts)')
+%     title(['Clocked Data Triggered on: ' datestr(triggerTime)])
+%     legend('1', '2', 'transmitTimes')
     
     
     %keyboard
