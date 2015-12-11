@@ -27,4 +27,5 @@ while 1
     title(['Clocked Data Triggered on: ' datestr(triggerTime)])
     legend('1', '2')
     
+    keyboard
 end
