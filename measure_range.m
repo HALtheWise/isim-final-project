@@ -46,9 +46,17 @@ while 1
         data(tID+mSig : tID+2*mSig,2))
     
 
+    if isempty(echoTime1) || isempty(echoTime2)
+        continue
+    end
+    
     mach1 = 340.29; %m/s
     timeOffset = 0;
-    pos = calcPos((echoTime1-timeOffset)*mach1, (echoTime2-timeOffset)*mach1)
+    
+    r1 = (echoTime1-timeOffset)*mach1
+    r2 = (echoTime2-timeOffset)*mach1
+    
+    pos = calcPos(r1, r2)
     
 %     plot(timestamps, data);
 %     plot(timestamps, TransmitTimes);
