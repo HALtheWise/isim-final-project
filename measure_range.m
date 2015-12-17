@@ -53,16 +53,26 @@ while 1
     
     mach1 = 340.29; %m/s
     timeOffset = 0;
+    d = 0.09; % Distance from origin to transmitters
     
     r1 = (echoTime1-timeOffset)*mach1
     r2 = (echoTime2-timeOffset)*mach1
     
-    pos = calcPos(r1, r2)
+    pos = calcPos(r1, r2, d)
     
     if imag(pos(2))
         disp('position imaginary')
         continue
     end
+    
+    transmitter1 = [-d, 0];
+    delta = pos - transmitter1;
+    theta1 = atan2d(delta(2), delta(1))
+    
+    expected_strength = base_amplitude(r1, theta1);
+    angleCompFactor = echoAmp1 / expected_strength % Should be less than 1
+    
+    
 %     plot(timestamps, data);
 %     plot(timestamps, TransmitTimes);
 %     
