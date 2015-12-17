@@ -17,5 +17,7 @@ function [ pos ] = calcPos( r1, r2 )
     xlim([-1 1])
     plot(r1*sin(linspace(0,2*pi))-d, r1*cos(linspace(0,2*pi)))
     plot(r2*sin(linspace(0,2*pi))+d, r2*cos(linspace(0,2*pi)))
+    plot(pos(1), pos(2), '*');
+    plot(0, 0, '*');
 end
 
