@@ -8,14 +8,15 @@ function [ pos ] = calcPos( r1, r2, d )
 
     pos = [x y];
     
+    global ax2
     
-    clf
+    cla(ax2)
     hold on
-    axis equal
+    axis(ax2, 'equal')
     xlim([-1 1])
-    plot(r1*sin(linspace(0,2*pi))-d, r1*cos(linspace(0,2*pi)))
-    plot(r2*sin(linspace(0,2*pi))+d, r2*cos(linspace(0,2*pi)))
-    plot(pos(1), pos(2), '*');
-    plot(0, 0, '*');
+    plot(ax2, r1*sin(linspace(0,2*pi))-d, r1*cos(linspace(0,2*pi)))
+    plot(ax2, r2*sin(linspace(0,2*pi))+d, r2*cos(linspace(0,2*pi)))
+    plot(ax2, pos(1), pos(2), '*');
+    plot(ax2, 0, 0, '*');
 end
 

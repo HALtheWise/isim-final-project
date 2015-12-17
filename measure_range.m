@@ -14,6 +14,12 @@ packetLength = .2; %seconds of measurement
 
 rate = 400e3;
 
+close all
+figure
+ax1 = subplot(1,2,1);
+global ax2
+ax2 = subplot(1,2,2);
+
 while 1
     %pause
 
@@ -38,10 +44,10 @@ while 1
     tTime = timestamps(tID);
     
     
-    [echoTime1, echoAmp1] = detect_echo(timestamps(tID:tID+mSig)-tTime,...
+    [echoTime2, echoAmp2] = detect_echo(timestamps(tID:tID+mSig)-tTime,...
         data(tID:tID+mSig,2))
     
-    [echoTime2, echoAmp2] = detect_echo(timestamps(tID+mSig : tID+2*mSig)...
+    [echoTime1, echoAmp1] = detect_echo(timestamps(tID+mSig : tID+2*mSig)...
         -tTime-(1/mFreq),...
         data(tID+mSig : tID+2*mSig,2))
     
@@ -52,8 +58,8 @@ while 1
     end
     
     mach1 = 340.29; %m/s
-    timeOffset = 0;
-    d = 0.09; % Distance from origin to transmitters
+    timeOffset = 2e-4;
+    d = 0.13; % Distance from origin to transmitters
     
     r1 = (echoTime1-timeOffset)*mach1
     r2 = (echoTime2-timeOffset)*mach1
@@ -65,6 +71,8 @@ while 1
         continue
     end
     
+    plot(ax1, pos(1), pos(2), 'r*');
+    
     transmitter1 = [-d, 0];
     delta = pos - transmitter1;
     theta1 = atan2d(delta(2), delta(1))
@@ -73,6 +81,12 @@ while 1
     angleCompFactor = echoAmp1 / expected_strength % Should be less than 1
     
     detectedAngle = angleFromStrength(angleCompFactor)
+    absoluteAngle = theta1+detectedAngle - 90
+    
+    hold(ax1, 'on')
+    axis(ax1, 'equal')
+    xlim(ax1, .2*[-1 1]);
+    plot(.2*[0 sind(absoluteAngle)], .2*[0 cosd(absoluteAngle)])
     
 %     plot(timestamps, data);
 %     plot(timestamps, TransmitTimes);

@@ -3,5 +3,6 @@ function [ absangle ] = angleFromStrength( amplitude )
 %   Detailed explanation goes here
 
     absangle = log(amplitude)/-0.054;
+    absangle = absangle*2.5;
 end
 
