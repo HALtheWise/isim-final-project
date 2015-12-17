@@ -47,6 +47,7 @@ while 1
     
 
     if isempty(echoTime1) || isempty(echoTime2)
+        disp('Missing echo')
         continue
     end
     
@@ -58,6 +59,10 @@ while 1
     
     pos = calcPos(r1, r2)
     
+    if imag(pos(2))
+        disp('position imaginary')
+        continue
+    end
 %     plot(timestamps, data);
 %     plot(timestamps, TransmitTimes);
 %     
