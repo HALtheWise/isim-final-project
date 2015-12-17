@@ -12,7 +12,7 @@ ch2 = addAnalogInputChannel(s,'AD1', 2, 'Voltage')
 
 packetLength = .2; %seconds of measurement
 
-rate = 500e3;
+rate = 400e3;
 
 while 1
     %pause
@@ -69,9 +69,10 @@ while 1
     delta = pos - transmitter1;
     theta1 = atan2d(delta(2), delta(1))
     
-    expected_strength = base_amplitude(r1, theta1);
+    expected_strength = base_amplitude(r1)
     angleCompFactor = echoAmp1 / expected_strength % Should be less than 1
     
+    detectedAngle = angleFromStrength(angleCompFactor)
     
 %     plot(timestamps, data);
 %     plot(timestamps, TransmitTimes);

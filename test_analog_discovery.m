@@ -10,6 +10,10 @@ pause
 
 [singleReading, triggerTime] = s.inputSingleScan
 
+% close all
+% figure
+% global ax1;
+% ax1 = subplot(1,1,1);
 
 while 1
     pause
