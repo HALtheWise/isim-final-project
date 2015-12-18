@@ -71,7 +71,7 @@ while 1
         continue
     end
     
-    plot(ax1, pos(1), pos(2), 'r*');
+    plot(ax1, pos(1), pos(2), '*', 'MarkerFaceColor', [1 0 0]);
     
     transmitter1 = [-d, 0];
     delta = pos - transmitter1;
