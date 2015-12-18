@@ -36,6 +36,10 @@ while 1
     
     TransmitTimes = abs(data(:,1)) > 2; % Create an array of 0's and 1's representing the points where a signal is clearly being transmitted
     
+    if TransmitTimes(1)
+        continue
+    end
+    
     tID = find(TransmitTimes, 1);
     if isempty(tID) || length(timestamps) - tID <= mSig
         disp('Transmission not detected')
@@ -81,12 +85,12 @@ while 1
     detectedAngle = angleFromStrength(angleCompFactor)
     absoluteAngle = theta1+detectedAngle - 90
     
-    plot(ax1, pos(1), pos(2), '*', 'MarkerEdgeColor', [1 0 0]);
+    plot(ax1, pos(1), pos(2), '*', 'MarkerEdgeColor', hsv2rgb([mod(5*absoluteAngle+90, 360)/360 1 1]), 'MarkerSize', 15);
     
     hold(ax1, 'on')
     axis(ax1, 'equal')
     xlim(ax1, .2*[-1 1]);
-    plot(ax2, [pos(1) pos(1)+.1*sind(absoluteAngle)], [pos(2) pos(2)-cosd(absoluteAngle)]) %angle tick
+    plot(ax2, [pos(1) pos(1)+.2*sind(absoluteAngle)], [pos(2) pos(2)-.2*cosd(absoluteAngle)]) %angle tick
     
 %     plot(timestamps, data);
 %     plot(timestamps, TransmitTimes);
