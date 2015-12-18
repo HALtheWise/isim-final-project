@@ -71,8 +71,6 @@ while 1
         continue
     end
     
-    plot(ax1, pos(1), pos(2), '*', 'MarkerFaceColor', [1 0 0]);
-    
     transmitter1 = [-d, 0];
     delta = pos - transmitter1;
     theta1 = atan2d(delta(2), delta(1))
@@ -82,6 +80,8 @@ while 1
     
     detectedAngle = angleFromStrength(angleCompFactor)
     absoluteAngle = theta1+detectedAngle - 90
+    
+    plot(ax1, pos(1), pos(2), '*', 'MarkerEdgeColor', [1 0 0]);
     
     hold(ax1, 'on')
     axis(ax1, 'equal')
