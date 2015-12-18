@@ -86,7 +86,7 @@ while 1
     hold(ax1, 'on')
     axis(ax1, 'equal')
     xlim(ax1, .2*[-1 1]);
-    plot(.2*[0 sind(absoluteAngle)], .2*[0 cosd(absoluteAngle)])
+    plot(ax2, [pos(1) pos(1)+.1*sind(absoluteAngle)], [pos(2) pos(2)-cosd(absoluteAngle)]) %angle tick
     
 %     plot(timestamps, data);
 %     plot(timestamps, TransmitTimes);
